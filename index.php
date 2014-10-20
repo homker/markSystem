@@ -1,6 +1,6 @@
 <?php
 	$time = time();
-	exec("sudo nmap -sP 192.168.1.0/24",$res,$rs);
+	exec("/bin/sh sudo nmap -sP 192.168.1.0/24",$res,$rs);
 	if($rs == 0){
 		$param = "/for (.*?)/";   
 		foreach($res as $value){
