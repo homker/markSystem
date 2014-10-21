@@ -1,7 +1,7 @@
 <?php
 	$time = time();
 	exec("sudo nmap -sP 192.168.1.0/24",$res,$rs);
-	var_dump($res);
+	//var_dump($res);
 	if($rs == 0){
 		foreach($res as $value){
 			if(strstr($value,"192.168.1.106")) break;
