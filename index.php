@@ -1,5 +1,6 @@
 <?php
 	$time = time();
+	$content = array();
 	exec("sudo nmap -sP 192.168.1.0/24",$res,$rs);
 	//var_dump($res);
 	if($rs == 0){
@@ -7,11 +8,11 @@
 			if(strstr($value,"192.168.1.106")) continue;
 			if(strstr($value,"Nmap scan report for")){
 				$result = substr($value,20);
-				echo $result."<br/>";
+				array_push($content,$result);
 			}
 			if(strstr($value,"MAC Address")){
 				$result = substr($value,12);
-				echo $result."<br/>";
+				array_push($content,$result);
 			}
 			//var_dump($matchs);
 		//print_r($res);
