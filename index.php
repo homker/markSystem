@@ -18,6 +18,7 @@
 		//print_r($res);
 		}
 	}
+	var_dump($content);
 	$latetime = time();
 	echo $time = $latetime - $time;
 ?>

@@ -12,12 +12,13 @@
 			}
 			if(strstr($value,"MAC Address")){
 				$result = substr($value,12);
-								array_push($content,$result);
+				array_push($content,$result);
 			}
 			//var_dump($matchs);
 		//print_r($res);
 		}
 	}
+	print_r($content);
 	$latetime = time();
 	echo $time = $latetime - $time;
 ?>
