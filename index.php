@@ -9,7 +9,7 @@
 				echo $result."<br/>";
 			}
 			if(strstr($value,"MAC Address")){
-				$result = substr($value,11)
+				$result = substr($value,11);
 				echo $result."<br/>";
 			}
 			//var_dump($matchs);

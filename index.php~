@@ -6,11 +6,11 @@
 		foreach($res as $value){
 			if(strstr($value,"Nmap scan report for")){
 				$result = substr($value,17);
-				echo $result;
+				echo $result."<br/>";
 			}
 			if(strstr($value,"MAC Address")){
 				$result = substr($value,11)
-				echo $result;
+				echo $result."<br/>";
 			}
 			//var_dump($matchs);
 		//print_r($res);
