@@ -1,7 +1,7 @@
 <?php
 	$time = time();
 	exec("nmap -sP 192.168.1.0/24",$res,$rs);
-	var_dump($es);
+	var_dump($res);
 	if($rs == 0){
 		$param = "/for (.*?)/";   
 		foreach($res as $value){
