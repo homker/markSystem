@@ -12,10 +12,10 @@
 	{
 		if($_GET['MAC']){
 			$mac = getMAC();
-			echo $content = response($mac);
+			echo $content = response($mac,$time);
 		}else{
 			$ip = getIP();
-			echo $content = respense($ip);
+			echo $content = response($ip,$time);
 		}
 		//echo "hello world";
 	}
