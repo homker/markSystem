@@ -1,5 +1,25 @@
 <?php
 	$time = microtime();
+	var_dump($_SERVER['REQUEST_METHOD']);
+	switch($_SERVER['REQUEST_METHOD']){
+		case 'GET' :  get (); break;
+		case 'POST':  post(); break;
+		default: header('HTTP/1.1 405 Method Not Allowed');
+	}
+	
+	
+	function get()
+	{
+		if($_GET['MAC']){
+			$mac = getMAC();
+			echo $content = response($mac);
+		}else{
+			$ip = getIP();
+			echo $content = respense($ip);
+		}
+		echo "hello world";
+	}
+	
 	function  getMAC(){
 		$MAC_address = array();
 		exec("sudo nmap -sP 192.168.1.0/24",$res,$rs);
@@ -35,6 +55,12 @@
 		}
 		return $cip;
 	}
-	$latetime = microtime();
-	echo $time = $latetime - $time;
+	function response($content,$time)
+	{
+		$latetime = microtime();
+		$time = $latetime - $time;
+		$response = json_encode(array("content"=>$content,"time"=>$time));
+		return $response;
+	}
+	
 ?>
