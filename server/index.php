@@ -36,6 +36,5 @@
 		return $cip;
 	}
 	$latetime = microtime();
-	echo getIP();
 	echo $time = $latetime - $time;
 ?>

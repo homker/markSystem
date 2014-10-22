@@ -34,7 +34,6 @@
 		  $cip = "无法获取！";
 		}
 		return $cip;
-		}
 	}
 	$latetime = microtime();
 	echo getIP();
