@@ -1,3 +1,5 @@
 $(document).ready(function(){
-	$.get("./server/index.php",function(){},'json');
+	$.get("./server/index.php",function(data){
+		console.log(data);
+	},'json');
 })
