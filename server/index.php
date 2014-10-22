@@ -17,7 +17,7 @@
 			$ip = getIP();
 			echo $content = respense($ip);
 		}
-		echo "hello world";
+		//echo "hello world";
 	}
 	
 	function  getMAC(){
