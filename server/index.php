@@ -1,6 +1,6 @@
 <?php
 	$time = microtime();
-	var_dump($_SERVER['REQUEST_METHOD']);
+	//var_dump($_SERVER['REQUEST_METHOD']);
 	switch($_SERVER['REQUEST_METHOD']){
 		case 'GET' :  get (); break;
 		case 'POST':  post(); break;
