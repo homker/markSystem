@@ -67,7 +67,7 @@
 		if(!$redis->exists('address')){
 			addMacAddress($redis);
 		}
-		return $tempAddress = $redis->lRange('address', 0, -1);
+		return $tempAddress = unserialize($redis->lRange('address', 0, -1));
 	}
 	
 	function addMacAddress($redis)
