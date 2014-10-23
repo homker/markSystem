@@ -64,7 +64,7 @@
 	/*******   redis fucntion   **********/
 	
 	function getMAC($redis){
-		if(!$redis->exists("address")){
+		if(!$redis->exists('address')){
 			addMacAddress($redis);
 		}
 		return $tempAddress = $redis->lRange('address', 0, -1);
