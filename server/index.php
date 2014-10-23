@@ -71,7 +71,7 @@
 	
 		$tempAddress = $redis->lRange('address', 0, -1);
 		for($i=0;$i<count($tempAddress);$i++){
-			array_push($address,unserialize($tmpAddress["$i"]));
+			array_push($address,unserialize($tempAddress["$i"]));
 		}
 		return $address; 
 	}
