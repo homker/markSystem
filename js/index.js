@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$.get("./server/index.php?MAC=get",function(data){
-		console.log(data);
+		console.log(data.content);
 		for(var i = 0 ; i<data.content.lenth ; i += 2){
 			alert("hehe");
 			console.log(data.content['i']);
