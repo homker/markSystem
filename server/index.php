@@ -75,7 +75,7 @@
 		$macAddress = getNowMAC();
 		//$address = array();
 		for($i = 0; $i<count($macAddress);$i=$i+2){
-			$tmpAddress = serialize(array("IP"=>$macAddress['$i'],"MAC"=>$macAddress['$i+1']));//数组序列化操作
+			$tmpAddress = serialize(array("IP"=>$macAddress["$i"],"MAC"=>$macAddress["$i+1"]));//数组序列化操作
 			$redis->rPush("address",$tmpAddress);
 		}
 		
