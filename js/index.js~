@@ -1,5 +1,13 @@
 $(document).ready(function(){
-	$.get("./server/index.php&MAC=help",function(data){
-		console.log(data);
+	$.get("./server/index.php?MAC=get",function(data){
+		for(var i; i<data.content.lenth;i+2){
+			$(.content).append("<tr>
+			            <td>"+i+"</td>
+			            <td>"+data.content['i']+"("+data.content['i+1']+")"+"</td>
+			            <td>01/04/2012</td>
+			            <td>Approved</td>
+			            <td>Default</td>
+		            </tr>");
+		}
 	},'json');
 })
