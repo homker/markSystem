@@ -8,16 +8,16 @@
 	$time = microtime();
 	//var_dump($_SERVER['REQUEST_METHOD']);
 	switch($_SERVER['REQUEST_METHOD']){
-		case 'GET' :  get (); break;
+		case 'GET' :  get ($redis); break;
 		case 'POST':  post(); break;
 		default: header('HTTP/1.1 405 Method Not Allowed');
 	}
 	
 	
-	function get()
+	function get($redis)
 	{
 		if($_GET['MAC']){
-			$mac = getMAC();
+			$mac = getMAC($redis);
 			echo $content = response($mac,$time);
 		}else{
 			$ip = getIP();
