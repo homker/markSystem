@@ -17,7 +17,7 @@
 	function get($redis)
 	{
 		if($_GET['MAC']){
-			//$mac = getMAC($redis);
+			$mac = getMAC($redis);
 			echo $content = response($mac,$time);
 		}else{
 			$ip = getIP();
