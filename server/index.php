@@ -27,7 +27,6 @@
 	}
 	
 	function  getNowMAC(){
-		if(
 		$MAC_address = array();
 		exec("sudo nmap -sP 192.168.1.0/24",$res,$rs);
 		//var_dump($res);
