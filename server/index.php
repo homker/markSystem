@@ -64,13 +64,16 @@
 	/*******   redis fucntion   **********/
 	
 	function getMAC($redis){
+		$address = array();
 		if(!$redis->exists('address')){
 			addMacAddress($redis);
 		}
 	
 		$tempAddress = $redis->lRange('address', 0, -1);
-		var_dump($tempAddress);
-		return $tempAddress; 
+		for($i=0;$i<count($tempAddress);$i++){
+			array_push($address,unserialize($tmpAddress["$i"]));
+		}
+		return $address; 
 	}
 	
 	function addMacAddress($redis)
@@ -79,7 +82,7 @@
 		//$address = array();
 		for($i = 0; $i<count($macAddress);$i=$i+2){
 			$m = $i + 1;
-			$tmpAddress = array("IP"=>$macAddress["$i"],"MAC"=>$macAddress["$m"]);//数组序列化操作
+			$tmpAddress = serialize(array("IP"=>$macAddress["$i"],"MAC"=>$macAddress["$m"]));//数组序列化操作
 			$redis->rPush("address",$tmpAddress);
 		}
 		
