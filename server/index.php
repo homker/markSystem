@@ -9,7 +9,7 @@
 	//var_dump($_SERVER['REQUEST_METHOD']);
 	switch($_SERVER['REQUEST_METHOD']){
 		case 'GET' :  get ($redis,$time); break;
-		case 'POST':  post(); break;
+		case 'POST':  post($redis,$time); break;
 		default: header('HTTP/1.1 405 Method Not Allowed');
 	}
 	
@@ -26,6 +26,17 @@
 		}
 		//echo "hello world";
 	}
+	function post($redis,$time)
+	{
+		if($_POST['studentID']){
+			if(is_numeric($_POST['studentID'])){
+			}else{
+				$reback = array("error"=>"not num");
+				echo $content response($reback,$time)
+			}
+		}
+	}
+	
 	
 	function  getNowMAC(){
 		$MAC_address = array();

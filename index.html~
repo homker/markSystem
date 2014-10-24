@@ -34,7 +34,10 @@ $(document).ready(function(){
 		//console.log(isNaN($(".studentID").val()));
 		if(!isNaN($(".studentID").val())&&$(".studentID").val().length == 14){
 			$(".input-group").removeClass("has-error");
-			var studentID = $(".studentID").val();
+			var studentID = {studentID:$(".studentID").val()};
+			$.post("./server/index.php",studenID,function(data){
+				console.log(data);
+			},"json");
 		}else{
 			$(".input-group").addClass("has-error");
 			$(".studentID").val("").attr("placeholder","所输入内容格式不符").focus();
