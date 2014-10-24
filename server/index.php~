@@ -18,7 +18,7 @@
 	{
 		if($_GET['MAC']){
 			$mac = getAllMAC($redis);
-			if($date = register()) $date = date("Y-m-d H:m:s",$date);
+			//if($date = register()) $date = date("Y-m-d H:m:s",$date);
 			echo $content = response($mac,$time,$date);
 		}else{
 			$ip = getIP();
@@ -31,9 +31,16 @@
 		if($_POST['studentID']){
 			if(is_numeric($_POST['studentID'])){
 				$studentID = $_POST['studentID'];
-				$ip = getIP();
-				$mac = getMACByIP($ip,$redis);
-			
+				if(!$redis->exist($studentID)){
+					$ip = getIP();
+					$mac = getMACByIP($ip,$redis);
+					$redis->set($studentID,$mac);
+					$date = register($mac,$redis);
+					$timeLength = getTimelenth($mac,$redis);
+				}
+				$mac = $redis->get($student);
+				$
+				
 			}else{
 				$reback = array("error"=>"not num");
 				echo $content = response($reback,$time,date("Y-m-d H:m:s"));
@@ -64,6 +71,10 @@
 	
 	function getMACByIP($ip,$redis){
 		$address = getAllMAC($redis);
+		foreach($address as $value){
+			if($value['IP'] == $ip) return $value['MAC'];
+		}
+		//var_dump($address);
 	}
 	
 	function getIP()
