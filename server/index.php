@@ -32,7 +32,7 @@
 			if(is_numeric($_POST['studentID'])){
 			}else{
 				$reback = array("error"=>"not num");
-				echo $content = response($reback,$time);
+				echo $content = response($reback,$time,date("Y-m-d H:m:s"));
 			}
 		}
 	}
@@ -121,7 +121,7 @@
 		
 	}
 	/************* respnse fucntion **************/
-	function response($content,$time,$date = date("Y-m-d H:m:s"))
+	function response($content,$time,$date)
 	{
 		$latetime = microtime();
 		$time = $latetime - $time;
