@@ -32,7 +32,7 @@
 			if(is_numeric($_POST['studentID'])){
 			}else{
 				$reback = array("error"=>"not num");
-				echo $content response($reback,$time)
+				echo $content response($reback,$time);
 			}
 		}
 	}
