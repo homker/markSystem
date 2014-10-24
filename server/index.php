@@ -30,6 +30,10 @@
 	{
 		if($_POST['studentID']){
 			if(is_numeric($_POST['studentID'])){
+				$studentID = $_POST['studentID'];
+				$ip = getIP();
+				$mac = getMACByIP($ip,$redis);
+			
 			}else{
 				$reback = array("error"=>"not num");
 				echo $content = response($reback,$time,date("Y-m-d H:m:s"));
@@ -57,6 +61,12 @@
 		}
 		return $MAC_address;
 	}
+	
+	function getMACByIP($ip,$redis){
+		$address = getAllMAC($redis);
+		var_dump($address);
+	}
+	
 	function getIP()
 	{
 		if(!empty($_SERVER["HTTP_CLIENT_IP"])){
