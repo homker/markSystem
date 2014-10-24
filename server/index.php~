@@ -18,7 +18,7 @@
 	{
 		if($_GET['MAC']){
 			$mac = getAllMAC($redis);
-			if($date = register()) $date = date("Y-m-d H:m:s",$date);
+			$
 			echo $content = response($mac,$time,$date);
 		}else{
 			$ip = getIP();
@@ -103,7 +103,7 @@
 	{
 		$registerTime = time();
 		if($redis->set($mac,$registerTime)){
-			return $registerTime;
+			return true;
 		}else{
 			return false;
 		}
