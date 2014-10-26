@@ -1,6 +1,6 @@
 <?php
 
-	echo date("Y-m-d H:m:s",time()); 
+	echo date("H:m:s",time()); 
 	//connect the redis
 	
 	$redis= new Redis();
