@@ -71,16 +71,14 @@
 		//var_dump($res);
 		if($rs == 0){
 			foreach($res as $value){
-				if(strstr($value,"192.168.1.1")) continue;
-				if(strstr($value,"MAC Address")){
-					echo $result = substr($value,12);
-					array_push($MAC_address,$result);
-					continue;
-				}
+				if(strstr($value,"192.168.1.106")) continue;
 				if(strstr($value,"Nmap scan report for")){
-					echo $result = substr($value,20);
+					$result = substr($value,20);
 					array_push($MAC_address,$result);
-					continue;
+				}
+				if(strstr($value,"MAC Address")){
+					$result = substr($value,12);
+					array_push($MAC_address,$result);
 				}
 			}
 		}
@@ -132,7 +130,7 @@
 		//$address = array();
 		for($i = 0; $i<count($macAddress);$i=$i+2){
 			$m = $i + 1;
-			$tmpAddress = serialize(array("IP"=>$macAddress["$m"],"MAC"=>$macAddress["$i"]));//数组序列化操作
+			$tmpAddress = serialize(array("IP"=>$macAddress["$i"],"MAC"=>$macAddress["$m"]));//数组序列化操作
 			$redis->rPush("address",$tmpAddress);
 		}
 		
