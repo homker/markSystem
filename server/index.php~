@@ -43,11 +43,12 @@
 					}
 					$redis->set($studentID,$mac);
 				}
-				$mac = $redis->get($studentID);
-				$reback = format($redis);
+				
 				if($redis->exists($mac)){
 					$redis->del($mac);
 				}else{
+					$mac = $redis->get($studentID);
+					$reback = format($redis);
 					register($mac,$redis);
 				}
 				echo $content = response($reback,$time,$mac);
@@ -148,7 +149,9 @@
 	{
 	
      $ariveTime = $redis->get($mac);
-     
+     if(!$ariveTime){
+     	$ariveTime = date("Y-m-d H:i:s",time());
+     }
      $leaveTime = date("Y-m-d H:i:s",time());
      //var_dump($ariveTime - $leaveTime);
      $timeLenth = $leaveTime - $ariveTime;
