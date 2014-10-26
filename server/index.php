@@ -35,7 +35,7 @@
 				if(!$redis->exists($studentID)){
 					$ip = getIP();
 					$mac = getMACByIP($ip,$redis);
-					if($mac == null){
+					while($mac != null){
 						$redis->del("address");
 						$mac = getMACByIP($ip,$redis);
 					}
@@ -71,7 +71,7 @@
 		//var_dump($res);
 		if($rs == 0){
 			foreach($res as $value){
-				if(strstr($value,"192.168.1.106")) continue;
+				//if(strstr($value,"192.168.1.106")) continue;
 				if(strstr($value,"Nmap scan report for")){
 					$result = substr($value,20);
 					array_push($MAC_address,$result);
@@ -141,7 +141,7 @@
 	
      $ariveTime = $redis->get($mac);
      $leaveTime = time();
-     $timeLenth = $ariveTime - $leaveTime;
+     $timeLenth = $leaveTime - $ariveTime;
      return $timeLenth;
 	}
 	
