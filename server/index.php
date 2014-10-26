@@ -1,6 +1,5 @@
 <?php
 
-	echo date("H:i:s",0); 
 	//connect the redis
 	
 	$redis= new Redis();
