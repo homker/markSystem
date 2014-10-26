@@ -43,11 +43,11 @@
 					}
 					$redis->set($studentID,$mac);
 				}
-				
+				$mac = $redis->get($studentID);
 				if($redis->exists($mac)){
 					$redis->del($mac);
 				}else{
-					$mac = $redis->get($studentID);
+					
 					$reback = format($redis);
 					register($mac,$redis);
 				}
