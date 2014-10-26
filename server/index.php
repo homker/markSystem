@@ -1,5 +1,5 @@
 <?php
-	date_default_timezone_set('PRC');
+	date_default_timezone_set("Etc/GMT+8");
 	echo date("Y-m-d H:m:s"); 
 	//connect the redis
 	
