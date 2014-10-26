@@ -150,8 +150,9 @@
 	
      $ariveTime = $redis->get($mac);
      $leaveTime = time();
-     var_dump($ariveTime - $leaveTime);
+     //var_dump($ariveTime - $leaveTime);
      $timeLenth = $leaveTime - $ariveTime;
+     var_dump(date("h:i:s",$timeLenth));
      return $timeLenth;
 	}
 	
