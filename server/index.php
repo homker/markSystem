@@ -72,12 +72,12 @@
 		if($rs == 0){
 			foreach($res as $value){
 				if(strstr($value,"192.168.1.1")) continue;
-				if(strstr($value,"Nmap scan report for")){
-					$result = substr($value,20);
-					array_push($MAC_address,$result);
-				}
 				if(strstr($value,"MAC Address")){
 					$result = substr($value,12);
+					array_push($MAC_address,$result);
+				}
+				if(strstr($value,"Nmap scan report for")){
+					$result = substr($value,20);
 					array_push($MAC_address,$result);
 				}
 			}
