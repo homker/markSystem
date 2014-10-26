@@ -1,6 +1,6 @@
 <?php
 
-	//echo date("H:i:sa",time()); 
+	echo date("H:i:s",0); 
 	//connect the redis
 	
 	$redis= new Redis();
@@ -65,7 +65,8 @@
 		$macAddress = getAllMAC($redis);
 		$callback = array();
 		foreach($macAddress as $value){
-			$timeLength = date("H:i:s",getTimelenth($value['MAC'],$redis));
+			$timeLength = getTimelenth($value['MAC'],$redis);
+			$timeLength = date("H:i:s",$timeLength);
 			$startTime = date("Y-m-d H:i:s",register($value['MAC'],$redis));
 			array_push($callback,array('IP'=>$value['IP'],'MAC'=>$value['MAC'],'timeLength'=>$timeLength,'startTime'=>$startTime ));
 		}
