@@ -28,13 +28,17 @@
 	}
 	function post($redis,$time)
 	{
-		$ip = getIP();
-		$mac = getMACByIP($ip,$redis);
-		var_dump($mac);
+		
 		if($_POST['studentID']){
 			if(is_numeric($_POST['studentID'])){
 				$studentID = $_POST['studentID'];
 				if(!$redis->exists($studentID)){
+					$ip = getIP();
+					$mac = getMACByIP($ip,$redis);
+					if($mac == null){
+						$redis->del("address");
+						$mac = getMACByIP($ip,$redis);
+					}
 					$redis->set($studentID,$mac);
 				}
 				$mac = $redis->get($studentID);
@@ -43,7 +47,7 @@
 				exit(0);
 			}else{
 				$reback = array("error"=>"not num");
-				echo $content = response($reback,$time,$mac);
+				echo $content = response($reback,$time);
 				exit(0);
 			}
 		}
