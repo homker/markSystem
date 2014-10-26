@@ -1,5 +1,6 @@
 <?php
-	date_default_timezone_set('PRC'); 
+	date_default_timezone_set('PRC');
+	echo date(); 
 	//connect the redis
 	
 	$redis= new Redis();
