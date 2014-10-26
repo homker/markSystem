@@ -37,7 +37,7 @@
 					var_dump($ip);
 					$mac = getMACByIP($ip,$redis);
 					var_dump($mac);
-					while($mac != null){
+					if($mac != null){
 						$redis->del("address");
 						$mac = getMACByIP($ip,$redis);
 					}
@@ -88,7 +88,9 @@
 	}
 	
 	function getMACByIP($ip,$redis){
+	
 		$address = getAllMAC($redis);
+		
 		foreach($address as $value){
 			if(strstr($value['IP'],$ip)) return $value['MAC'];
 		}
