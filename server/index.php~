@@ -33,7 +33,7 @@
 		if($_POST['studentID']){
 			if(is_numeric($_POST['studentID'])){
 				$studentID = $_POST['studentID'];
-				if(!$redis->exist($studentID)){
+				if(!$redis->exists($studentID)){
 					$redis->set($studentID,$mac);
 				}
 				$mac = $redis->get($student);

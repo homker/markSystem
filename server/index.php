@@ -36,7 +36,7 @@
 				if(!$redis->exists($studentID)){
 					$redis->set($studentID,$mac);
 				}
-				$mac = $redis->get($student);
+				$mac = $redis->get($studentID);
 				$reback = format($redis);
 				echo $content = response($reback,$time,$mac);
 				exit(0);
