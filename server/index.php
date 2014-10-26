@@ -45,6 +45,7 @@
 				}
 				$mac = $redis->get($studentID);
 				if($redis->exists($mac)){
+					var_dump($mac);
 					var_dump($redis->del($mac));
 					var_dump($redis->exists($mac));
 				}else{
