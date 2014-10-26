@@ -35,7 +35,7 @@
 				if(!$redis->exists($studentID)){
 					$ip = getIP();
 					$mac = getMACByIP($ip,$redis);
-					if($mac == null){
+					while($mac != null){
 						$redis->del("address");
 						$mac = getMACByIP($ip,$redis);
 					}
