@@ -33,8 +33,8 @@
 			if(is_numeric($_POST['studentID'])){
 				$studentID = $_POST['studentID'];
 				if(!$redis->exists($studentID)){
-					$ip = getIP();
-					$mac = getMACByIP($ip,$redis);
+					echo $ip = getIP();
+					echo $mac = getMACByIP($ip,$redis);
 					while($mac != null){
 						$redis->delete("address");
 						$mac = getMACByIP($ip,$redis);
