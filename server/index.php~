@@ -37,6 +37,7 @@
 					$redis->set($studentID,$mac);
 					$date = register($mac,$redis);
 					$timeLength = getTimelenth($mac,$redis);
+					
 				}
 				$mac = $redis->get($student);
 				$

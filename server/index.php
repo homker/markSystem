@@ -40,7 +40,6 @@
 					
 				}
 				$mac = $redis->get($student);
-				$
 				
 			}else{
 				$reback = array("error"=>"not num");
