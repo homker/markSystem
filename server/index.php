@@ -30,6 +30,7 @@
 	{
 		$ip = getIP();
 		$mac = getMACByIP($ip,$redis);
+		var_dump($mac);
 		if($_POST['studentID']){
 			if(is_numeric($_POST['studentID'])){
 				$studentID = $_POST['studentID'];
@@ -53,7 +54,7 @@
 		$callback = array();
 		foreach($macAddress as $value){
 			$timeLength = getTimelenth($value['MAC'],$redis);
-			$startTime = register($value['MAC'],$redis);
+			$startTime = date("Y-m-d H:m:s",register($value['MAC'],$redis));
 			array_push($callback,array('IP'=>$value['IP'],'MAC'=>$value['MAC'],'timeLength'=>$timeLength,'startTime'=>$startTime ));
 		}
 		return $callback;
