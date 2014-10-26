@@ -47,10 +47,9 @@
 				if($redis->exists($mac)){
 					$redis->del($mac);
 				}else{
-					
-					$reback = format($redis);
 					register($mac,$redis);
 				}
+				$reback = format($redis);
 				echo $content = response($reback,$time,$mac);
 				exit(0);
 			}else{
