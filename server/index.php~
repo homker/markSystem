@@ -36,6 +36,7 @@
 					$ip = getIP();
 					var_dump($ip);
 					$mac = getMACByIP($ip,$redis);
+					var_dump($mac);
 					while($mac != null){
 						$redis->delete("address");
 						$mac = getMACByIP($ip,$redis);
