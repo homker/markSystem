@@ -30,6 +30,7 @@
 	{
 		$ip = getIP();
 		$mac = getMACByIP($ip,$redis);
+		var_dump($mac);
 		if($_POST['studentID']){
 			if(is_numeric($_POST['studentID'])){
 				$studentID = $_POST['studentID'];

@@ -84,6 +84,7 @@
 	function getMACByIP($ip,$redis){
 		$address = getAllMAC($redis);
 		foreach($address as $value){
+			var_dump($value['IP']);
 			if($value['IP'] == $ip) return $value['MAC'];
 		}
 		//var_dump($address);
