@@ -6,7 +6,7 @@
     $redis->connect('127.0.0.1',6379);
     
 	$time = microtime();
-	//var_dump($_SERVER['REQUEST_METHOD']);
+
 	switch($_SERVER['REQUEST_METHOD']){
 		case 'GET' :  get ($redis,$time); break;
 		case 'POST':  post($redis,$time); break;
@@ -18,13 +18,11 @@
 	{
 		if($_GET['MAC']){
 			$mac = getAllMAC($redis);
-			//if($date = register()) $date = date("Y-m-d H:m:s",$date);
 			echo $content = response($mac,$time);
 		}else{
 			$ip = getIP();
 			echo $content = response($ip,$time);
 		}
-		//echo "hello world";
 	}
 	function post($redis,$time)
 	{
@@ -34,9 +32,7 @@
 				$studentID = $_POST['studentID'];
 				if(!$redis->exists($studentID)){
 					$ip = getIP();
-					//var_dump($ip);
 					$mac = getMACByIP($ip,$redis);
-					//var_dump($mac);
 					if($mac != null){
 						$redis->del("address");
 						$mac = getMACByIP($ip,$redis);
@@ -45,9 +41,8 @@
 				}
 				$mac = $redis->get($studentID);
 				if($redis->exists($mac)){
-					var_dump($mac);
-					var_dump($redis->delete($mac));
-					var_dump($redis->exists($mac));
+					$redis->delete($mac);
+					var_dump($redis->get($mac));
 				}else{
 					register($mac,$redis);
 				}
@@ -77,7 +72,6 @@
 	function  getNowMAC(){
 		$MAC_address = array();
 		exec("sudo nmap -sP 192.168.1.0/24",$res,$rs);
-		//var_dump($res);
 		if($rs == 0){
 			foreach($res as $value){
 				if(strstr($value,"192.168.1.106")) continue;
@@ -95,13 +89,10 @@
 	}
 	
 	function getMACByIP($ip,$redis){
-	
 		$address = getAllMAC($redis);
-		
 		foreach($address as $value){
 			if(strstr($value['IP'],$ip)) return $value['MAC'];
 		}
-		//var_dump($address);
 	}
 	
 	function getIP()
@@ -137,7 +128,6 @@
 	function addMacAddress($redis)
 	{
 		$macAddress = getNowMAC();
-		//$address = array();
 		for($i = 0; $i<count($macAddress);$i=$i+2){
 			$m = $i + 1;
 			$tmpAddress = serialize(array("IP"=>$macAddress["$i"],"MAC"=>$macAddress["$m"]));//数组序列化操作
@@ -154,9 +144,7 @@
      	$ariveTime = date("Y-m-d H:i:s",time());
      }
      $leaveTime = date("Y-m-d H:i:s",time());
-     //var_dump($ariveTime - $leaveTime);
      $timeLenth = $leaveTime - $ariveTime;
-     //var_dump(date("h:i:s",$timeLenth));
      return $timeLenth;
 	}
 	
