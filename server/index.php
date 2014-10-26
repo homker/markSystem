@@ -149,16 +149,16 @@
 	{
 	
      $ariveTime = $redis->get($mac);
-     $leaveTime = time();
+     $leaveTime = date("Y-m-d H:i:s",time());
      //var_dump($ariveTime - $leaveTime);
      $timeLenth = $leaveTime - $ariveTime;
-     var_dump(date("h:i:s",$timeLenth));
+     //var_dump(date("h:i:s",$timeLenth));
      return $timeLenth;
 	}
 	
 	function register($mac,$redis)
 	{
-		$registerTime = time();
+		$registerTime = date("Y-m-d H:i:s",time());
 		if($redis->exists($mac)){
 			 return $registerTime = $redis->get($mac);
 		}else{
