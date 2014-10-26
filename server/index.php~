@@ -34,9 +34,9 @@
 				$studentID = $_POST['studentID'];
 				if(!$redis->exists($studentID)){
 					$ip = getIP();
-					var_dump($ip);
+					//var_dump($ip);
 					$mac = getMACByIP($ip,$redis);
-					var_dump($mac);
+					//var_dump($mac);
 					if($mac != null){
 						$redis->del("address");
 						$mac = getMACByIP($ip,$redis);

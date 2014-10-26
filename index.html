@@ -32,7 +32,6 @@
 			            <th>IP地址</th>
 			            <th>到点时间</th>
 			            <th>时长</th>
-			            <th>操作</th>
 		            </tr>
 	            </thead>
 	            <tbody class="content">
@@ -53,7 +52,10 @@ $(document).ready(function(){
 			$.post("./server/index.php",studentID,function(data){
 				$(".input-group").hide();
 				$(".table").show();
-				console.log(data);
+				for(var i = 0 ; i<data.content.length ; i ++ ){
+					var s = i + 1;
+					$(".content").append("<tr><td>"+s+"</td><td>"+data.content[i].IP+"("+data.content[i].MAC+")"+"</td><td>"+data.content[i].startTime+"</td><td>"+data.content[i].timeLength+"</td></tr>");
+		}
 			},"json");
 		}else{
 			$(".input-group").addClass("has-error");
