@@ -1,6 +1,6 @@
 <?php
 	date_default_timezone_set("Etc/GMT-10");
-	echo date("Y-m-d H:m:s"); 
+	echo date("Y-m-d H:m:s",time()); 
 	//connect the redis
 	
 	$redis= new Redis();
