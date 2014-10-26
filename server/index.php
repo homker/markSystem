@@ -19,7 +19,7 @@
 		if($_GET['MAC']){
 			$mac = getAllMAC($redis);
 			//if($date = register()) $date = date("Y-m-d H:m:s",$date);
-			echo $content = response($mac,$time,$date);
+			echo $content = response($mac,$time);
 		}else{
 			$ip = getIP();
 			echo $content = response($ip,$time);
@@ -28,24 +28,35 @@
 	}
 	function post($redis,$time)
 	{
+		$ip = getIP();
+		$mac = getMACByIP($ip,$redis);
 		if($_POST['studentID']){
 			if(is_numeric($_POST['studentID'])){
 				$studentID = $_POST['studentID'];
 				if(!$redis->exist($studentID)){
-					$ip = getIP();
-					$mac = getMACByIP($ip,$redis);
 					$redis->set($studentID,$mac);
-					$date = register($mac,$redis);
-					$timeLength = getTimelenth($mac,$redis);
-					
 				}
 				$mac = $redis->get($student);
-				
+				$reback = format($redis);
+				echo $content = response($reback,$time,$mac);
+				exit(0);
 			}else{
 				$reback = array("error"=>"not num");
-				echo $content = response($reback,$time,date("Y-m-d H:m:s"));
+				echo $content = response($reback,$time,$mac);
+				exit(0);
 			}
 		}
+	}
+	
+	function format($redis){
+		$macAddress = getAllMAC($redis);
+		$callback = array();
+		foreach($macAddress as $value){
+			$timeLength = getTimelenth($value['MAC'],$redis);
+			$startTime = register($value['MAC'],$redis);
+			array_push($callback,array('IP'=>$value['IP'],'MAC'=>$value['MAC'],'timeLength'=>$timeLength,'startTime'=>$startTime ));
+		}
+		return $callback;
 	}
 	
 	
@@ -100,7 +111,6 @@
 		if(!$redis->exists('address')){
 			addMacAddress($redis);
 		}
-	
 		$tempAddress = $redis->lRange('address', 0, -1);
 		for($i=0;$i<count($tempAddress);$i++){
 			array_push($address,unserialize($tempAddress["$i"]));
@@ -126,26 +136,29 @@
      $ariveTime = $redis->get($mac);
      $leaveTime = time();
      $timeLenth = $ariveTime - $leaveTime;
-     $redis->sAdd($mac,$timeLenth);
      return $timeLenth;
 	}
 	
 	function register($mac,$redis)
 	{
 		$registerTime = time();
-		if($redis->set($mac,$registerTime)){
-			return $registerTime;
+		if($redis->exists($mac)){
+			 return $registerTime = $redis->get($mac);
 		}else{
-			return false;
+			if($redis->set($mac,$registerTime)){
+				return $registerTime;
+			}else{
+				return false;
+			}
 		}
 		
 	}
 	/************* respnse fucntion **************/
-	function response($content,$time,$date)
+	function response($content,$time,$mac)
 	{
 		$latetime = microtime();
 		$time = $latetime - $time;
-		$response = json_encode(array("content"=>$content,"date"=>$date,"time"=>$time));
+		$response = json_encode(array("content"=>$content,"time"=>$time,"who"=>$mac));
 		return $response;
 	}
 	
