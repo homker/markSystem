@@ -64,7 +64,7 @@
 		$macAddress = getAllMAC($redis);
 		$callback = array();
 		foreach($macAddress as $value){
-			$timeLength = getTimelenth($value['MAC'],$redis);
+			$timeLength = date("H:m:s",getTimelenth($value['MAC'],$redis));
 			$startTime = date("Y-m-d H:m:s",register($value['MAC'],$redis));
 			array_push($callback,array('IP'=>$value['IP'],'MAC'=>$value['MAC'],'timeLength'=>$timeLength,'startTime'=>$startTime ));
 		}
