@@ -38,7 +38,7 @@
 					$mac = getMACByIP($ip,$redis);
 					var_dump($mac);
 					while($mac != null){
-						$redis->delete("address");
+						$redis->del("address");
 						$mac = getMACByIP($ip,$redis);
 					}
 					$redis->set($studentID,$mac);
