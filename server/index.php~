@@ -8,7 +8,7 @@
 	$time = microtime();
 
 	switch($_SERVER['REQUEST_METHOD']){
-		case 'GET' :  get ($redis,$time); break;
+		case 'GET' :; break;
 		case 'POST':  post($redis,$time); break;
 		default: header('HTTP/1.1 405 Method Not Allowed');
 	}
@@ -42,7 +42,7 @@
 				$mac = $redis->get($studentID);
 				if($redis->exists($mac)){
 					$redis->delete($mac);
-					var_dump($redis->get($mac));
+					//var_dump($redis->get($mac));
 				}else{
 					register($mac,$redis);
 				}
@@ -140,12 +140,21 @@
 	{
 	
      $ariveTime = $redis->get($mac);
+     //var_dump(!$ariveTime);
      if(!$ariveTime){
-     	$ariveTime = date("Y-m-d H:i:s",time());
+     	date("Y-m-d H:i:s",time());
      }
      $leaveTime = date("Y-m-d H:i:s",time());
-     $timeLenth = $leaveTime - $ariveTime;
-     return $timeLenth;
+     $ariveTime = new DateTime($ariveTime);
+     $leaveTime = new DateTime($leaveTime);
+     $timeLenth = $leaveTime->diff($ariveTime);
+     
+     
+     
+     //$timeLenth = $leaveTime - $ariveTime;
+	 //$hour = (int)(($timeLenth%(3600*24))/(3600));
+	 //$min  = (int)($timeLenth%(3600)/60);
+	 return $timeLenth = $hour.'小时'.$min.'分';	
 	}
 	
 	function register($mac,$redis)
