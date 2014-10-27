@@ -137,20 +137,15 @@
 	
 	function getTimelenth($mac,$redis)
 	{
-	
-     $ariveTime = $redis->get($mac);
-     //var_dump(!$ariveTime);
-     if($ariveTime){
-     	$ariveTime = date("Y-m-d H:i:s",time());
-     }
-     //var_dump($ariveTime);
-     $leaveTime = date("Y-m-d H:i:s",time());
-     $ariveTime = new DateTime($ariveTime);
-     $leaveTime = new DateTime($leaveTime);
-     $timeLenth = $leaveTime->diff($ariveTime);
-     return $timeLenth->format('%H小时%i分%s秒');
-     
-     
+		 $ariveTime = $redis->get($mac);
+		 if($ariveTime){
+		 	$ariveTime = date("Y-m-d H:i:s",time());
+		 }
+		 $leaveTime = date("Y-m-d H:i:s",time());
+		 $ariveTime = new DateTime($ariveTime);
+		 $leaveTime = new DateTime($leaveTime);
+		 $timeLenth = $leaveTime->diff($ariveTime);
+		 return $timeLenth->format('%H小时%i分%s秒');
      //$timeLenth = $leaveTime - $ariveTime;
 	 //$hour = (int)(($timeLenth%(3600*24))/(3600));
 	 //$min  = (int)($timeLenth%(3600)/60);
