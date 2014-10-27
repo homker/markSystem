@@ -147,8 +147,8 @@
      $leaveTime = date("Y-m-d H:i:s",time());
      $ariveTime = new DateTime($ariveTime);
      $leaveTime = new DateTime($leaveTime);
-     return $timeLenth = $leaveTime->diff($ariveTime);
-     
+     $timeLenth = $leaveTime->diff($ariveTime);
+     return $timeLenth->format('%H小时%i分%s秒');
      
      
      //$timeLenth = $leaveTime - $ariveTime;
