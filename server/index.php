@@ -40,14 +40,15 @@
 					$redis->set($studentID,$mac);
 				}
 				$mac = $redis->get($studentID);
-				if($redis->exists($mac)){
-					$redis->delete($mac);
-					//var_dump($redis->get($mac));
-				}else{
+				if(!$redis->exists($mac)){
+					//$redis->delete($mac);
 					register($mac,$redis);
 				}
 				$reback = format($redis);
 				echo $content = response($reback,$time,$mac);
+				if($redis->exists($mac)){
+					$redis->delete($mac);
+				}
 				exit(0);
 			}else{
 				$reback = array("error"=>"not num");
