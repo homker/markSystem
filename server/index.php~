@@ -138,7 +138,7 @@
 	function getTimelenth($mac,$redis)
 	{
 		 $ariveTime = $redis->get($mac);
-		 if($ariveTime){
+		 if(!$ariveTime){
 		 	$ariveTime = date("Y-m-d H:i:s",time());
 		 }
 		 $leaveTime = date("Y-m-d H:i:s",time());
