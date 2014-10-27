@@ -141,11 +141,11 @@
 	{
 	
      $ariveTime = $redis->get($mac);
-     var_dump(!$ariveTime);
+     //var_dump(!$ariveTime);
      if(!$ariveTime){
      	$ariveTime = date("Y-m-d H:i:s",time());
      }
-     var_dump($ariveTime);
+     //var_dump($ariveTime);
      $leaveTime = date("Y-m-d H:i:s",time());
      $ariveTime = new DateTime($ariveTime);
      $leaveTime = new DateTime($leaveTime);
