@@ -40,15 +40,13 @@
 					$redis->set($studentID,$mac);
 				}
 				$mac = $redis->get($studentID);
-				if(!$redis->exists($mac)){
-					//$redis->delete($mac);
+				if($redis->exists($mac)){
+					$redis->delete($mac);
+				}else{
 					register($mac,$redis);
 				}
 				$reback = format($redis);
 				echo $content = response($reback,$time,$mac);
-				if($redis->exists($mac)){
-					$redis->delete($mac);
-				}
 				exit(0);
 			}else{
 				$reback = array("error"=>"not num");
@@ -63,7 +61,7 @@
 		$callback = array();
 		foreach($macAddress as $value){
 			$timeLength = getTimelenth($value['MAC'],$redis);
-			$startTime = register($value['MAC'],$redis);
+			$startTime = $redis->get($value['MAC'])?$redis->get($value['MAC']):date("Y-m-d H:i:s",time());//register($value['MAC'],$redis);
 			array_push($callback,array('IP'=>$value['IP'],'MAC'=>$value['MAC'],'timeLength'=>$timeLength,'startTime'=>$startTime ));
 		}
 		return $callback;
