@@ -25,7 +25,7 @@
         			<button class="btn btn-info register" type="button">为了小黑～！</button>
      			</span>
     		</div><!-- /input-group -->
-    		<div class="loding" style="display:hidden;"> <img src="./images/loding.gif" alt="loding"/> </div>
+    		<div class="loding col-md-offset-4" > <img src="./images/loding.gif" alt="loding"/> </div>
     		<table class="table table-striped table-hover">
 	            <thead>
 		            <tr>
@@ -45,6 +45,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".table").hide();
+	$(".loding").hide();
 	$(".register").click(function(){
 		//console.log(isNaN($(".studentID").val()));
 		if(!isNaN($(".studentID").val())&&$(".studentID").val().length == 14){
