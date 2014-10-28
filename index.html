@@ -54,6 +54,7 @@ $(document).ready(function(){
 			$(".input-group").hide();
 			$(".loding").show();
 			$.post("./server/index.php",studentID,function(data){
+				$(".loding").hide();
 				$(".table").show();
 				for(var i = 0 ; i<data.content.length ; i ++ ){
 					var s = i + 1;

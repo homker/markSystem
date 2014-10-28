@@ -52,7 +52,7 @@ $(document).ready(function(){
 			$(".input-group").removeClass("has-error");
 			var studentID = {studentID:$(".studentID").val()};
 			$(".input-group").hide();
-			
+			$(".loding").show();
 			$.post("./server/index.php",studentID,function(data){
 				$(".table").show();
 				for(var i = 0 ; i<data.content.length ; i ++ ){
