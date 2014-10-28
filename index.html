@@ -58,6 +58,9 @@ $(document).ready(function(){
 				$(".table").show();
 				for(var i = 0 ; i<data.content.length ; i ++ ){
 					var s = i + 1;
+					if(data.content[i].MAC == data.who){
+						$(".content").append("<tr class='info'><td>"+s+"</td><td>"+data.content[i].IP+"("+data.content[i].MAC+")"+"</td><td>"+data.content[i].startTime+"</td><td>"+data.content[i].timeLength+"</td></tr>");
+					}
 					$(".content").append("<tr><td>"+s+"</td><td>"+data.content[i].IP+"("+data.content[i].MAC+")"+"</td><td>"+data.content[i].startTime+"</td><td>"+data.content[i].timeLength+"</td></tr>");
 		}
 			},"json");
