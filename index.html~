@@ -13,7 +13,7 @@
 
 	<div class="container-fluid">
 	<div class="row-fluid">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-7 col-md-offset-3">
 			<div class="page-header">
 				<h1>
 					日新网技术研发中心 <small>打卡签到系统</small>
@@ -25,6 +25,7 @@
         			<button class="btn btn-info register" type="button">为了小黑～！</button>
      			</span>
     		</div><!-- /input-group -->
+    		<div> <img src="./images/loding.gif" alt="loding"/> </div>
     		<table class="table table-striped table-hover">
 	            <thead>
 		            <tr>
@@ -49,8 +50,9 @@ $(document).ready(function(){
 		if(!isNaN($(".studentID").val())&&$(".studentID").val().length == 14){
 			$(".input-group").removeClass("has-error");
 			var studentID = {studentID:$(".studentID").val()};
+			$(".input-group").hide();
+			
 			$.post("./server/index.php",studentID,function(data){
-				$(".input-group").hide();
 				$(".table").show();
 				for(var i = 0 ; i<data.content.length ; i ++ ){
 					var s = i + 1;

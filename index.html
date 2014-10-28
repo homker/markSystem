@@ -25,6 +25,7 @@
         			<button class="btn btn-info register" type="button">为了小黑～！</button>
      			</span>
     		</div><!-- /input-group -->
+    		<div class="loding" style="display:hidden;"> <img src="./images/loding.gif" alt="loding"/> </div>
     		<table class="table table-striped table-hover">
 	            <thead>
 		            <tr>
@@ -49,8 +50,9 @@ $(document).ready(function(){
 		if(!isNaN($(".studentID").val())&&$(".studentID").val().length == 14){
 			$(".input-group").removeClass("has-error");
 			var studentID = {studentID:$(".studentID").val()};
+			$(".input-group").hide();
+			
 			$.post("./server/index.php",studentID,function(data){
-				$(".input-group").hide();
 				$(".table").show();
 				for(var i = 0 ; i<data.content.length ; i ++ ){
 					var s = i + 1;
